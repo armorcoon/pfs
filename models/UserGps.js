@@ -1,21 +1,26 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const UserGpsSchema = new mongoose.Schema({
-  userId :{
+  userId: {
     type: String,
-    required:[true,'Please add an ID'],
+    required: [true, "Please add an ID"],
     uniqure: true,
     trim: true,
-    maxlength:[10, 'ID must be less than 10 chars']
+    maxlength: [10, "ID must be less than 10 chars"],
   },
-  
-  location: {
+  userName:{
 
   },
-  createdAt:{
+  userPhone:{
+
+  },
+  location: {
+  },
+  createdAt: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
-module.exports = mongoose.model('UserGps', UserGpsSchema);
+
+module.exports = mongoose.model("UserGps", UserGpsSchema);

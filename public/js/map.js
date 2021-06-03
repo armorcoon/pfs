@@ -83,6 +83,9 @@ async function getUsers() {
 
   loadMap(users);
 }
+//
+
+
 
 // Load map with stores
 function loadMap(users) {

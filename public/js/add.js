@@ -1,17 +1,21 @@
 const userForm = document.getElementById('user-form');
 const userId = document.getElementById('user-id');
+const userName = document.getElementById('user-name');
+const userPhone = document.getElementById('user-phone');
 const userAddress = document.getElementById('user-address');
-
+console.log(userName);
 // Send POST to API to add user
 async function addUser(e) {
   e.preventDefault();
 
-  if (userId.value === '' || userAddress.value === '') {
+  if (userId.value === '' || userAddress.value === '' || userName.value === '' || userPhone.value ==='') {
     alert('Please fill out the form');
   }
   //send body to API
   const sendBody = {
     userId: userId.value,
+    userName:userName.value,
+    userPhone:userPhone.value,
     address: userAddress.value
   };
   try {

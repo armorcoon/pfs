@@ -23,6 +23,10 @@
         <div class="form-group">
           <label for="user-id">UNSW ID</label>
           <input type="text" id="user-id" class="form-control" />
+          <label for="user-name">Student name(Fullname)</label>
+          <input type="text" id="user-name" class="form-control" />
+          <label for="user-phone">Mobile phone</label>
+          <input type="text" id="user-phone" class="form-control" />
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
         <a href="index.html" class="btn btn-secondary">Back</a>
@@ -30,20 +34,5 @@
     </div>
 
     <script src="js/gps.js"></script>
-    <script>
-      if('geolocation' in navigator){
-        console.log('geolocation avaiable');
-        navigator.geolocation.getCurrentPosition(position =>{
-          const lat = position.coords.latitude;
-          const long = position.coords.longitude;
-          document.getElementById('latitude').textContent = lat;
-          document.getElementById('longitude').textContent = long;
-        })
-      }else{
-        console.log('geolocation not avaiable');
-      }
-    </script>
-    <p>latitude:<span id="latitude"></span></p>
-    <p>longitude:<span id="longitude"></span></p>
   </body>
 </html>

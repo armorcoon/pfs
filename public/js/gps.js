@@ -1,10 +1,12 @@
 const userForm = document.getElementById("user-form");
 const userId = document.getElementById("user-id");
-var long;
-var lat;
+const userName = document.getElementById('user-name');
+const userPhone = document.getElementById('user-phone');
+var longitude;
+var latitude;
 navigator.geolocation.getCurrentPosition(position =>{
-  lat = position.coords.latitude;
-  long = position.coords.longitude;
+  latitude = position.coords.latitude;
+  longitude = position.coords.longitude;
 })
 
 async function addUserGps(e) {
@@ -12,7 +14,9 @@ async function addUserGps(e) {
   //send body
   const sendBody = {
     userId: userId.value,
-    location: [lat,long]
+    userName:userName.value,
+    userPhone:userPhone.value,
+    location: [latitude,longitude]
   };
   try {
     const res = await fetch("/api/v2/users", {
@@ -26,7 +30,7 @@ async function addUserGps(e) {
       throw Error("User already exists!");
     }
     alert("Successfully Logedin!");
-    window.location.href = "/gps.html";
+    window.location.href = "/index.html";
   } catch (err) {
     alert(err);
     return;

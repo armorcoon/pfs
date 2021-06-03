@@ -11,6 +11,12 @@ const UserSchema = new mongoose.Schema({
     trim: true,
     maxlength: [10, 'ID must be less than 10 chars']
   },
+  userName:{
+
+  },
+  userPhone:{
+    
+  },
   address: {
     type: String,
     required: [true, 'Please add an address']

@@ -36,3 +36,9 @@ db.users.remove(
 ... }
 ... })
 
+*******************************************
+DATABASE2 
+find the specific 
+db.usergps.find({location:{"latitude":-35.291136,"longitude":149.1664896}})
+
+
