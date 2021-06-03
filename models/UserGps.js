@@ -15,12 +15,14 @@ const UserGpsSchema = new mongoose.Schema({
 
   },
   location: {
+    // coordinates:{
+    //   type:[Number]
+    // }
   },
   createdAt: {
     type: Date,
     default: Date.now,
   },
 });
-
 
 module.exports = mongoose.model("UserGps", UserGpsSchema);

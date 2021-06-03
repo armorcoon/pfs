@@ -2,11 +2,11 @@ const userForm = document.getElementById("user-form");
 const userId = document.getElementById("user-id");
 const userName = document.getElementById('user-name');
 const userPhone = document.getElementById('user-phone');
-var longitude;
-var latitude;
+var long;
+var lat;
 navigator.geolocation.getCurrentPosition(position =>{
-  latitude = position.coords.latitude;
-  longitude = position.coords.longitude;
+  lat = position.coords.latitude;
+  long = position.coords.longitude;
 })
 
 async function addUserGps(e) {
@@ -16,8 +16,9 @@ async function addUserGps(e) {
     userId: userId.value,
     userName:userName.value,
     userPhone:userPhone.value,
-    location: [latitude,longitude]
+    location:[lat,long]
   };
+
   try {
     const res = await fetch("/api/v2/users", {
       method: "POST",

@@ -78,7 +78,7 @@ async function getUsers() {
         userId: user.userId,
         icon: "shop",
       },
-    };p
+    };
   });
 
   loadMap(users);
@@ -87,7 +87,7 @@ async function getUsers() {
 
 
 
-// Load map with stores
+// Load map 
 function loadMap(users) {
   map.on("load", function () {
     map.addImage("pulsing-dot", pulsingDot, { pixelRatio: 2 });
