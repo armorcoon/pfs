@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const geocoder = require('../utils/geocoder');
 
+//create Schema
 
 const UserSchema = new mongoose.Schema({
   userId: {
@@ -33,6 +34,7 @@ const UserSchema = new mongoose.Schema({
 });
 
 // Geocode & create location
+  //run before going to save into database 
 UserSchema.pre('save', async function(next) {
   const loc = await geocoder.geocode(this.address);
   this.location = {

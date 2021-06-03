@@ -39,9 +39,24 @@ exports.addUsers = async (req, res, next) => {
   }
 };
 
-exports.addUserGps = async (req,res,next) => {
+exports.addUsers_gps = async (req,res,next) => {
   try {
     const usergps = await UserGps.create(req.body);
+    return res.status(200).json({
+      success: true,
+      data: usergps,
+    });
+  } catch (error) {
+    if (err.code === 11000){
+      return res.status(400).json({error:'This user already exists'});
+    }
+    res.status(500).json({ error: "Server error"});
+  }
+};
+
+exports.getUsers_gps = async (req,res,next) => {
+  try {
+    const usergps = await UserGps.find();
     return res.status(200).json({
       success: true,
       data: usergps,

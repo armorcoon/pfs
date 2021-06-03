@@ -10,15 +10,7 @@ const UserGpsSchema = new mongoose.Schema({
   },
   
   location: {
-    type: {
-      type: String,
-      enum: ['Point']
-    },
-    coordinates: {
-      type: [Number],
-      index: '2dsphere'
-    },
-    formattedAddress: String
+
   },
   createdAt:{
     type: Date,

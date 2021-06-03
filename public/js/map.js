@@ -78,7 +78,7 @@ async function getUsers() {
         userId: user.userId,
         icon: "shop",
       },
-    };
+    };p
   });
 
   loadMap(users);

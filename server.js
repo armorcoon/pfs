@@ -23,6 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.use('/api/v1/users', require('./routes/users'));
+app.use('/api/v2/users',require('./routes/users_gps'));
 
 const PORT = process.env.PORT || 5000;
 

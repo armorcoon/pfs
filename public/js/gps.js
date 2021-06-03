@@ -1,27 +1,38 @@
-const userForm = document.getElementById('user-form');
-const userId = document.getElementById('user-id');
-
+const userForm = document.getElementById("user-form");
+const userId = document.getElementById("user-id");
+var long;
+var lat;
+navigator.geolocation.getCurrentPosition(position =>{
+  lat = position.coords.latitude;
+  long = position.coords.longitude;
+})
 
 async function addUserGps(e) {
   e.preventDefault();
-  var noGeolocation = ()=>{
-      alert("unable to find your location");
+  //send body
+  const sendBody = {
+    userId: userId.value,
+    location: [lat,long]
   };
-  if(!navigator.geolocation || !document.querySelector){
-      noGeolocation();
-  }
-  else{
-    const successCallback = (position) => {
-      console.log(position);
-      userAddress = position;
+  try {
+    const res = await fetch("/api/v2/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(sendBody),
+    });
+    if (res.status === 400) {
+      throw Error("User already exists!");
     }
-    const errorCallback = (error) =>{
-      console.error(error);
-    };
-    navigator.geolocation.getCurrentPosition(successCallback,errorCallback);
+    alert("Successfully Logedin!");
+    window.location.href = "/gps.html";
+  } catch (err) {
+    alert(err);
+    return;
   }
-  if (userId.value === ''){
-    alert('Please fill in fields');
+  if (userId.value === "") {
+    alert("Please fill in fields");
   }
 }
-userForm.addEventListener('submit', addUserGps);
+userForm.addEventListener("submit", addUserGps);
