@@ -36,7 +36,27 @@
         <a href="index.html" class="btn btn-secondary">Back</a>
       </form>
     </div>
-
+    <script>
+      var lat;
+      var long;
+      navigator.geolocation.getCurrentPosition((position) => {
+          lat = position.coords.latitude;
+          long = position.coords.longitude;
+          const latlng = lat + "," + long;
+          let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latlng}&key=AIzaSyD_YWjLA9D5se_gD7W4-Ggg_dKJ-jUs_jc`;
+          fetch(url)
+          .then(res => res.json())
+          .then(data => {
+            document.body.insertAdjacentHTML(
+              "beforeend",
+              `<p>detected your currnet address: <br>${data.results[0].formatted_address}</p>`
+            );
+          })
+          .catch(err => console.warn(err.message));
+      });
+      
+      
+    </script>
     <script src="js/add.js"></script>
   </body>
 </html>

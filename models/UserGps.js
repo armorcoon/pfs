@@ -15,9 +15,7 @@ const UserGpsSchema = new mongoose.Schema({
 
   },
   location: {
-    // coordinates:{
-    //   type:[Number]
-    // }
+
   },
   createdAt: {
     type: Date,
