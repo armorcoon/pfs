@@ -34,7 +34,7 @@ async function addUserGps(e) {
     userId: userId.value,
     userName: userName.value,
     userPhone: userPhone.value,
-    location: [lat,long]
+    address: [lat,long]
   };
 
   try {
