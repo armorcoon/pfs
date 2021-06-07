@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const geocoder = require('../utils/geocoder');
 
 const UserGpsSchema = new mongoose.Schema({
   userId: {
@@ -28,17 +29,20 @@ const UserGpsSchema = new mongoose.Schema({
   },
 });
 
-// UserGpsSchema.pre('save', async function(next) {
-//   const loc = await geocoder.geocode(this.address);
-//   this.location = {
-//     type: 'Point',
-//     coordinates: [loc[0].longitude, loc[0].latitude],
-//     formattedAddress: loc[0].formattedAddress
-//   };
 
-//   // Do not save address
-//   this.address = undefined;
-//   next(); 
-// });
+
+
+UserGpsSchema.pre('save', async function(next) {
+  const loc = await geocoder.reverse({lat:this.address[0],lon:this.address[1]});
+  this.location = {
+    type: 'Point',
+    coordinates: [loc[0].longitude, loc[0].latitude],
+    formattedAddress: loc[0].formattedAddress
+  };
+
+  // Do not save address
+  this.address = undefined;
+  next(); 
+});
 
 module.exports = mongoose.model("UserGps", UserGpsSchema);
