@@ -62,6 +62,7 @@ var pulsingDot = {
 // Fetch stores from API
 async function getUsers() {
   const res = await fetch("/api/v1/users");
+  const res_gps = await fetch("/api/v2/users");
   const data = await res.json();
 
   const users = data.data.map((user) => {
@@ -80,11 +81,9 @@ async function getUsers() {
       },
     };
   });
-
   loadMap(users);
 }
 //
-
 
 
 // Load map 

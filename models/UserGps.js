@@ -4,10 +4,10 @@ const geocoder = require('../utils/geocoder');
 const UserGpsSchema = new mongoose.Schema({
   userId: {
     type: String,
-    required: [true, "Please add an ID"],
-    uniqure: true,
+    required: [true, 'Please add an ID'],
+    unique: true,
     trim: true,
-    maxlength: [10, "ID must be less than 10 chars"],
+    maxlength: [10, 'ID must be less than 10 chars'],
   },
   userName: {},
   userPhone: {},
@@ -15,11 +15,11 @@ const UserGpsSchema = new mongoose.Schema({
   location: {
     type: {
       type: String,
-      enum: ["Point"],
+      enum: ['Point'],
     },
     coordinates: {
       type: [Number],
-      index: "2dsphere",
+      index: '2dsphere',
     },
     formattedAddress: String,
   },

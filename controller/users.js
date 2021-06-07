@@ -59,6 +59,7 @@ exports.getUsers_gps = async (req,res,next) => {
     const usergps = await UserGps.find();
     return res.status(200).json({
       success: true,
+      count: usergps.length,
       data: usergps,
     });
   } catch (error) {
