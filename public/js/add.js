@@ -3,10 +3,34 @@ const userId = document.getElementById('user-id');
 const userName = document.getElementById('user-name');
 const userPhone = document.getElementById('user-phone');
 const userAddress = document.getElementById('user-address');
-console.log(userName);
+var long;
+var lat;
+
+navigator.geolocation.getCurrentPosition((position) => {
+  lat = position.coords.latitude;
+  long = position.coords.longitude;
+});
+async function getGeolocation(lat, long) {
+  const latlng = lat + "," + long;
+  const response = await fetch(
+    `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latlng}&key=AIzaSyD_YWjLA9D5se_gD7W4-Ggg_dKJ-jUs_jc`
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      let address_geo = data.results[0].formatted_address;
+      console.log(address_geo);
+      return (address_geo);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
+
 // Send POST to API to add user
 async function addUser(e) {
   e.preventDefault();
+  getGeolocation(lat,long);
 
   if (userId.value === '' || userAddress.value === '' || userName.value === '' || userPhone.value ==='') {
     alert('Please fill out the form');

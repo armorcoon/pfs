@@ -11,12 +11,8 @@ const UserSchema = new mongoose.Schema({
     trim: true,
     maxlength: [10, 'ID must be less than 10 chars']
   },
-  userName:{
-
-  },
-  userPhone:{
-    
-  },
+  userName:{},
+  userPhone:{},
   address: {
     type: String,
     required: [true, 'Please add an address']
@@ -41,6 +37,7 @@ const UserSchema = new mongoose.Schema({
 
 // Geocode & create location
   //run before going to save into database 
+  
 UserSchema.pre('save', async function(next) {
   const loc = await geocoder.geocode(this.address);
   this.location = {
