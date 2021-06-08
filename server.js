@@ -3,6 +3,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const connectDB = require('./config/db');
+const helmet = require('helmet');
 
 // load env vars
 dotenv.config({ path: './config/config.env' });
@@ -11,6 +12,7 @@ dotenv.config({ path: './config/config.env' });
 connectDB();
 
 const app = express();
+app.use(helmet());
 
 // Body parser
 app.use(express.json());
